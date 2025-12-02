@@ -14,7 +14,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import MobileMenu from "./MobileMenu";
 
-const logoSrc = "/src/assets/SGG-Logo.jpeg";
+const logoSrc = "/src/assets/SGG-logo.svg";
 
 const Logo = () => {
   const handleLogoClick = () => {
@@ -33,7 +33,7 @@ const Logo = () => {
       <Image
         src={logoSrc}
         alt="Sustainable Grid Group"
-        h="95px" // Keeps the navbar height consistent
+        h={{ base: "105px", md: "125px" }}
         objectFit="contain"
       />
     </ChakraLink>
@@ -66,9 +66,10 @@ const Header = () => {
       transition="background-color 0.2s"
     >
       <Flex
-        h={16}
+        h="16" // Fixed height on mobile, auto-grow on PC
+        py={{ base: 4, md: 2 }} // Adjust padding as needed
         alignItems={"center"}
-        justifyContent={"space-between"} // This pushes Logo Left and CTAs Right
+        justifyContent={"space-between"}
         maxW="7xl"
         mx="auto"
       >
