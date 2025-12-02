@@ -37,8 +37,8 @@ const HeroSection = () => {
           lineHeight="1.1"
           mb={6}
         >
-          Driving **Sustainable Growth** <br />
-          Through Expert **ESG Consulting**
+          Driving Sustainable Growth <br />
+          Through Expert ESG Consulting
         </Heading>
 
         {/* Description Text */}
