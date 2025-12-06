@@ -3,6 +3,7 @@ import Header from "./Header";
 import HeroSection from "./HeroSection";
 import StatsBar from "./StatsBar";
 import ServicesSection from "./ServiceSection";
+import IndustriesSection from "./IndustriesSection";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <HeroSection />
         <StatsBar />
         <ServicesSection />
+        <IndustriesSection />
       </main>
     </Box>
   );
