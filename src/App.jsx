@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
 import StatsBar from "./StatsBar";
+import ServicesSection from "./ServiceSection";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <main>
         <HeroSection />
         <StatsBar />
+        <ServicesSection />
       </main>
     </Box>
   );
