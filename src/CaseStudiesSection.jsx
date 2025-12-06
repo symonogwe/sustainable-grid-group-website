@@ -14,18 +14,17 @@ const caseStudiesData = [
   {
     title: "Reduced Carbon Footprint by 30% for EnergyCo",
     impact: "Environmental Impact",
-    imageSrc: "https://placehold.co/600x400/004D40/F7FAFC?text=Energy+Result",
+    imageSrc: "/src/assets/ssg1.jpg",
   },
   {
     title: "Achieved 95% Community Engagement for HealthCorp",
     impact: "Social Impact",
-    imageSrc: "https://placehold.co/600x400/38514A/F7FAFC?text=Social+Result",
+    imageSrc: "/src/assets/ssg4.jpg",
   },
   {
-    title: "Secured ISO 14001 Certification for ManuFact",
+    title: "Secured ISO 14001 Certification for Jaguar",
     impact: "Governance & Compliance",
-    imageSrc:
-      "https://placehold.co/600x400/8D99AE/2B2D42?text=Compliance+Result",
+    imageSrc: "/src/assets/ssg3.jpg",
   },
 ];
 
