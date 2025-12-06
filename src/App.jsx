@@ -4,6 +4,7 @@ import HeroSection from "./HeroSection";
 import StatsBar from "./StatsBar";
 import ServicesSection from "./ServiceSection";
 import IndustriesSection from "./IndustriesSection";
+import CaseStudiesSection from "./CaseStudiesSection";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <StatsBar />
         <ServicesSection />
         <IndustriesSection />
+        <CaseStudiesSection />
       </main>
     </Box>
   );
