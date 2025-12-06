@@ -5,6 +5,7 @@ import StatsBar from "./StatsBar";
 import ServicesSection from "./ServiceSection";
 import IndustriesSection from "./IndustriesSection";
 import CaseStudiesSection from "./CaseStudiesSection";
+import TestimonialsSection from "./TestimonialsSection";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <ServicesSection />
         <IndustriesSection />
         <CaseStudiesSection />
+        <TestimonialsSection />
       </main>
     </Box>
   );
