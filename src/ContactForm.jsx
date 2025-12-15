@@ -1,5 +1,3 @@
-// src/components/ContactForm.jsx
-
 import {
   Box,
   FormControl,
@@ -7,20 +5,80 @@ import {
   Input,
   Textarea,
   Button,
-  Stack,
   SimpleGrid,
   useColorModeValue,
+  useToast, // 💡 New: For user feedback
 } from "@chakra-ui/react";
 import { FiSend } from "react-icons/fi";
+import { useState } from "react"; // 💡 New: For managing form state
 
 const ContactForm = () => {
+  const toast = useToast();
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    subject: "Sustainable Grid Group Inquiry", // Default subject
+    message: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
   const inputBg = useColorModeValue("white", "sgg.700");
   const inputBorder = useColorModeValue("gray.300", "sgg.700");
 
-  const handleSubmit = (e) => {
+  // 1. State Change Handler
+  const handleChange = (e) => {
+    setFormState({
+      ...formState,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // 2. Mock Submission Handler
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted!");
-    // TODO: Add actual form submission logic (e.g., Axios POST request)
+    setIsLoading(true);
+
+    try {
+      // 💡 Placeholder for actual API call (e.g., using Axios or Fetch)
+      // In a real application, this would post to a serverless function (AWS Lambda, Azure, Firebase)
+      console.log("Submitting form data:", formState);
+
+      // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // 3. Success Feedback
+      toast({
+        title: "Message Sent!",
+        description:
+          "Thank you for reaching out. We will respond within 48 hours.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "top-right",
+      });
+
+      // Clear the form
+      setFormState({
+        name: "",
+        email: "",
+        subject: "Sustainable Grid Group Inquiry",
+        message: "",
+      });
+    } catch (error) {
+      // 4. Error Feedback
+      console.error("Form Submission Error:", error);
+      toast({
+        title: "Submission Failed.",
+        description:
+          "There was an error sending your message. Please try again later.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top-right",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -39,6 +97,8 @@ const ContactForm = () => {
             placeholder="Name"
             bg={inputBg}
             borderColor={inputBorder}
+            value={formState.name} // 💡 Controlled Input
+            onChange={handleChange} // 💡 State Handler
             _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
           />
         </FormControl>
@@ -51,20 +111,23 @@ const ContactForm = () => {
             placeholder="Email"
             bg={inputBg}
             borderColor={inputBorder}
+            value={formState.email} // 💡 Controlled Input
+            onChange={handleChange} // 💡 State Handler
             _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
           />
         </FormControl>
       </SimpleGrid>
 
-      {/* Subject Field */}
+      {/* Subject Field (Non-required, default value) */}
       <FormControl id="subject" mt={6}>
         <FormLabel visibility="hidden">Subject</FormLabel>
         <Input
           type="text"
-          placeholder="Sustainable Grid Group"
-          defaultValue="Sustainable Grid Group"
+          placeholder="Subject"
           bg={inputBg}
           borderColor={inputBorder}
+          value={formState.subject} // 💡 Controlled Input
+          onChange={handleChange} // 💡 State Handler
           _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
         />
       </FormControl>
@@ -77,6 +140,8 @@ const ContactForm = () => {
           bg={inputBg}
           borderColor={inputBorder}
           rows={5}
+          value={formState.message} // 💡 Controlled Input
+          onChange={handleChange} // 💡 State Handler
           _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
         />
       </FormControl>
@@ -89,6 +154,8 @@ const ContactForm = () => {
         mt={6}
         px={10}
         rightIcon={<FiSend />}
+        isLoading={isLoading} // 💡 Show spinner while submitting
+        loadingText="Sending"
       >
         Send Message
       </Button>
