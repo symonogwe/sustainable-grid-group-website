@@ -7,6 +7,7 @@ import IndustriesSection from "./IndustriesSection";
 import CaseStudiesSection from "./CaseStudiesSection";
 import TestimonialsSection from "./TestimonialsSection";
 import ContactSection from "./ContactSection";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <CaseStudiesSection />
         <TestimonialsSection />
         <ContactSection />
+        <Footer />
       </main>
     </Box>
   );
