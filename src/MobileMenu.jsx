@@ -1,5 +1,3 @@
-// src/components/MobileMenu.jsx (Corrected Implementation)
-
 import {
   Drawer,
   DrawerBody,
@@ -9,20 +7,25 @@ import {
   VStack,
   Link as ChakraLink,
   Button,
-  useColorModeValue, // 👈 HOOK
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
-const navItems = ["About", "Services", "Industries", "Case Studies", "Clients"];
+// Define the nav items type structure for clarity (moved from Header)
+// const navItems = ['About', 'Services', 'Industries', 'Case Studies', 'Clients'];
 
-const MobileMenu = ({ isOpen, onClose }) => {
-  // 🟢 FIX: Define Hooks at the Top Level!
+const MobileMenu = ({ isOpen, onClose, navItems, handleScrollToSection }) => {
+  // Define Hooks at the Top Level!
   const linkColor = useColorModeValue("sgg.900", "sgg.100");
   const bg = useColorModeValue("sgg.100", "sgg.900");
-
-  // 🟢 Pre-calculate dynamic hover styles once
   const hoverBg = useColorModeValue("gray.50", "sgg.700");
+
+  // Combined click handler for navigation links
+  const handleNavLinkClick = (e, id) => {
+    handleScrollToSection(e, id); // Scroll to the section
+    onClose(); // Close the drawer
+  };
 
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
@@ -35,32 +38,32 @@ const MobileMenu = ({ isOpen, onClose }) => {
             {/* Navigation Links */}
             {navItems.map((item) => (
               <ChakraLink
-                key={item}
-                as={ReactRouterLink}
-                to={`/${item.toLowerCase().replace(" ", "-")}`}
+                key={item.id}
+                href={`#${item.id}`} // Use standard href with ID
+                onClick={(e) => handleNavLinkClick(e, item.id)} // 💡 Use the new handler
                 fontSize="xl"
                 fontWeight="bold"
                 color={linkColor}
                 py={2}
-                onClick={onClose}
                 _hover={{
                   color: "sgg.500",
-                  bg: hoverBg, // 👈 Use the pre-calculated value
+                  bg: hoverBg,
                 }}
               >
-                {item}
+                {item.name}
               </ChakraLink>
             ))}
 
-            {/* CTA Button */}
+            {/* CTA Button: Scroll to Contact Section */}
             <Button
-              as={ReactRouterLink}
-              to="/contact"
+              as={ChakraLink} // Use ChakraLink to accept href and onClick
+              href="#contact"
               variant="solid"
               size="lg"
               mt={6}
               rightIcon={<FiArrowRight size={20} />}
-              onClick={onClose}
+              // 💡 Handle scroll and close when CTA is clicked
+              onClick={(e) => handleNavLinkClick(e, "contact")}
             >
               Go to Contact
             </Button>

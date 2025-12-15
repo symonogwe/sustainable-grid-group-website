@@ -36,7 +36,12 @@ const TestimonialsSection = () => {
   const bgColor = useColorModeValue("sgg.100", "sgg.900"); // Background color matches the wireframe (light gray)
 
   return (
-    <Box bg={bgColor} py={{ base: 12, md: 20 }} px={{ base: 4, md: 8 }}>
+    <Box
+      id="clients"
+      bg={bgColor}
+      py={{ base: 12, md: 20 }}
+      px={{ base: 4, md: 8 }}
+    >
       <Container maxW={"7xl"}>
         {/* Section Header */}
         <Heading

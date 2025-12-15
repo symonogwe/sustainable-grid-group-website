@@ -33,7 +33,12 @@ const CaseStudiesSection = () => {
   const bgColor = useColorModeValue("sgg.100", "sgg.900"); // Use main background color
 
   return (
-    <Box bg={bgColor} py={{ base: 12, md: 20 }} px={{ base: 4, md: 8 }}>
+    <Box
+      id="case-studies"
+      bg={bgColor}
+      py={{ base: 12, md: 20 }}
+      px={{ base: 4, md: 8 }}
+    >
       <Container maxW={"7xl"}>
         {/* Section Header */}
         <Heading

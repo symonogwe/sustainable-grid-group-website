@@ -60,7 +60,7 @@ const ServicesSection = () => {
   const headingColor = useColorModeValue("sgg.900", "sgg.100");
 
   return (
-    <Box py={{ base: 12, md: 20 }} px={{ base: 4, md: 8 }}>
+    <Box id="services" py={{ base: 12, md: 20 }} px={{ base: 4, md: 8 }}>
       <Container maxW={"6xl"}>
         {/* Section Header */}
         <Heading

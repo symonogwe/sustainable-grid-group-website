@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box,
   Flex,
@@ -33,7 +34,7 @@ const Logo = () => {
       <Image
         src={logoSrc}
         alt="Sustainable Grid Group"
-        h={{ base: "105px", md: "125px" }}
+        h={{ base: "75px", md: "105px" }}
         objectFit="contain"
       />
     </ChakraLink>
@@ -45,19 +46,56 @@ const Header = () => {
   const bg = useColorModeValue("navbar.light", "navbar.dark");
   const color = useColorModeValue("sgg.900", "sgg.100");
 
+  // ✅ store the section we want to scroll to AFTER drawer closes
+  const [pendingScrollId, setPendingScrollId] = useState(null);
+
   const navItems = [
-    "About",
-    "Services",
-    "Industries",
-    "Case Studies",
-    "Clients",
+    { name: "About", id: "about" },
+    { name: "Services", id: "services" },
+    { name: "Industries", id: "industries" },
+    { name: "Case Studies", id: "case-studies" },
+    { name: "Clients", id: "clients" },
   ];
+
+  // ✅ pure scroll function (no event dependency)
+  const scrollToSection = (id) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const headerOffset = 80;
+
+    // More reliable than offsetTop (handles nested layouts better)
+    const y =
+      target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  // ✅ desktop click: scroll immediately
+  const handleDesktopNavClick = (e, id) => {
+    e.preventDefault();
+    scrollToSection(id);
+  };
+
+  // ✅ mobile click: close drawer first (body scroll is locked while drawer open)
+  const handleMobileNavClick = (e, id) => {
+    e.preventDefault();
+    setPendingScrollId(id);
+    onClose();
+  };
+
+  // ✅ runs when drawer has fully closed
+  const handleDrawerClosed = () => {
+    if (!pendingScrollId) return;
+    scrollToSection(pendingScrollId);
+    setPendingScrollId(null);
+  };
 
   return (
     <Box
       bg={bg}
-      px={{ base: 4, md: 8 }}
-      py={4}
+      px={{ base: 2, md: 4 }}
+      py={2}
       position="sticky"
       top="0"
       zIndex="sticky"
@@ -66,8 +104,8 @@ const Header = () => {
       transition="background-color 0.2s"
     >
       <Flex
-        h="16" // Fixed height on mobile, auto-grow on PC
-        py={{ base: 4, md: 2 }} // Adjust padding as needed
+        h={{ base: 16, md: "auto" }}
+        py={{ base: 4, md: 2 }}
         alignItems={"center"}
         justifyContent={"space-between"}
         maxW="7xl"
@@ -77,37 +115,39 @@ const Header = () => {
           <Logo />
         </Box>
 
+        {/* DESKTOP NAV LINKS */}
         <Flex display={{ base: "none", lg: "flex" }}>
           <Stack direction={"row"} spacing={8}>
             {navItems.map((item) => (
               <ChakraLink
-                key={item}
-                as={ReactRouterLink}
-                to={`/${item.toLowerCase().replace(" ", "-")}`}
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleDesktopNavClick(e, item.id)}
                 p={2}
                 fontSize={"sm"}
                 fontWeight={600}
                 color={color}
                 _hover={{
                   textDecoration: "none",
-                  color: "sgg.500", // Green accent on hover
+                  color: "sgg.500",
                 }}
               >
-                {item}
+                {item.name}
               </ChakraLink>
             ))}
           </Stack>
         </Flex>
 
+        {/* CTAs + Theme Toggle */}
         <Stack
           direction={"row"}
           spacing={{ base: 2, md: 4 }}
           alignItems={"center"}
         >
-          {/* Desktop CTA Button */}
+          {/* Desktop CTA */}
           <Button
-            as={ReactRouterLink}
-            to="/contact"
+            href="#contact"
+            onClick={(e) => handleDesktopNavClick(e, "contact")}
             display={{ base: "none", md: "inline-flex" }}
             variant="solid"
             size="sm"
@@ -116,10 +156,9 @@ const Header = () => {
             Go to Contact
           </Button>
 
-          {/* Theme Toggle */}
           <ThemeToggle />
 
-          {/* Mobile Menu Icon (Hamburger) */}
+          {/* Mobile Menu Icon */}
           <Button
             display={{ base: "inline-flex", lg: "none" }}
             variant="ghost"
@@ -133,8 +172,14 @@ const Header = () => {
         </Stack>
       </Flex>
 
-      {/* 4. MOBILE MENU DRAWER COMPONENT */}
-      <MobileMenu isOpen={isOpen} onClose={onClose} />
+      {/* MOBILE MENU */}
+      <MobileMenu
+        isOpen={isOpen}
+        onClose={onClose}
+        navItems={navItems}
+        handleMobileNavClick={handleMobileNavClick}
+        onDrawerClosed={handleDrawerClosed}
+      />
     </Box>
   );
 };
