@@ -4,7 +4,7 @@ import { Box, Text, Flex, Icon, useColorModeValue } from "@chakra-ui/react";
 import { FiMapPin, FiMail } from "react-icons/fi";
 
 const MAP_EMBED_URL =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8387206427897!2d36.79160857684626!3d-1.2696799987182408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f177721582599%3A0x3d0667c269e416b1!2sMerchant%20Square!5e0!3m2!1sen!2ske!4v1765010833413!5m2!1sen!2ske";
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.797499580547!2d36.805550975770934!3d-1.2961195986915635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10ea0fbc6043%3A0xf6399b662f6071f8!2s5th%20Avenue%20Suites!5e0!3m2!1sen!2ske!4v1766061281896!5m2!1sen!2ske";
 
 const ContactDetails = () => {
   // 🟢 FIX: mapBorderColor is now used below
@@ -33,7 +33,7 @@ const ContactDetails = () => {
 
       <Flex align="center" mb={2}>
         <Icon as={FiMapPin} w={5} h={5} color={iconColor} mr={3} />
-        <Text fontSize="md">Riverside Dr, Nairobi</Text>
+        <Text fontSize="md">5th Avenue Suites,Ngong Rd, Nairobi</Text>
       </Flex>
 
       <Flex align="center">
