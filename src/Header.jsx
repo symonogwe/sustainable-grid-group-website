@@ -15,7 +15,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import MobileMenu from "./MobileMenu";
 
-const logoSrc = "/src/assets/SGG-logo.svg";
+const logoSrc = "/src/assets/SGGL-logo.svg";
 
 const Logo = () => {
   const handleLogoClick = () => {
@@ -34,7 +34,7 @@ const Logo = () => {
       <Image
         src={logoSrc}
         alt="Sustainable Grid Group"
-        h={{ base: "75px", md: "105px" }}
+        h={{ base: "260px", md: "290px" }}
         objectFit="contain"
       />
     </ChakraLink>
@@ -62,7 +62,7 @@ const Header = () => {
     const target = document.getElementById(id);
     if (!target) return;
 
-    const headerOffset = 80;
+    const headerOffset = 90;
 
     // More reliable than offsetTop (handles nested layouts better)
     const y =
@@ -94,8 +94,8 @@ const Header = () => {
   return (
     <Box
       bg={bg}
-      px={{ base: 2, md: 4 }}
-      py={2}
+      px={{ base: 4, md: 8 }}
+      py={{ base: 2, md: 3 }}
       position="sticky"
       top="0"
       zIndex="sticky"
@@ -104,7 +104,7 @@ const Header = () => {
       transition="background-color 0.2s"
     >
       <Flex
-        h={{ base: 16, md: "auto" }}
+        h={{ base: "50px", md: "60px" }}
         py={{ base: 4, md: 2 }}
         alignItems={"center"}
         justifyContent={"space-between"}
