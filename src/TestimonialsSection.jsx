@@ -1,14 +1,20 @@
-// src/components/TestimonialsSection.jsx
-
 import {
   Container,
-  SimpleGrid,
   Heading,
   Text,
   Box,
   useColorModeValue,
+  IconButton,
 } from "@chakra-ui/react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import TestimonialCard from "./TestimonialCard";
+
+// Swiper React components and styles
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const testimonialsData = [
   {
@@ -29,11 +35,26 @@ const testimonialsData = [
     clientName: "James Warner, Operations Head, Choice Logistics",
     clientTitle: "Client, Logistics Sector",
   },
+  {
+    quote:
+      "The depth of their ESG analysis exceeded our expectations. They didn't just point out gaps; they built the bridges to cross them.",
+    clientName: "Elena Rodriguez, Sustainability Lead",
+    clientTitle: "Client, Renewable Energy",
+  },
+  {
+    quote:
+      "A transformative experience for our leadership team. We now view sustainability as a competitive advantage.",
+    clientName: "David Chen, COO of Apex Global",
+    clientTitle: "Partner, International Trade",
+  },
 ];
 
 const TestimonialsSection = () => {
   const headingColor = useColorModeValue("sgg.900", "sgg.100");
-  const bgColor = useColorModeValue("sgg.100", "sgg.900"); // Background color matches the wireframe (light gray)
+  const bgColor = useColorModeValue("sgg.100", "sgg.900");
+
+  // 🟢 FIX: Properly using paginationColor
+  const paginationColor = useColorModeValue("sgg.900", "sgg.500");
 
   return (
     <Box
@@ -43,7 +64,6 @@ const TestimonialsSection = () => {
       px={{ base: 4, md: 8 }}
     >
       <Container maxW={"7xl"}>
-        {/* Section Header */}
         <Heading
           as="h2"
           size="xl"
@@ -66,21 +86,82 @@ const TestimonialsSection = () => {
           Building impactful partnerships is at the heart of what we do.
         </Text>
 
-        {/* Testimonials Grid */}
-        <SimpleGrid
-          columns={{ base: 1, md: 3 }} // Stacks on mobile, 3 columns on PC
-          spacing={{ base: 6, md: 10 }}
-        >
-          {testimonialsData.map((testimonial, index) => (
-            <TestimonialCard
-              key={index}
-              quote={testimonial.quote}
-              clientName={testimonial.clientName}
-              clientTitle={testimonial.clientTitle}
-              delay={0.1 + index * 0.1} // Staggered animation
-            />
-          ))}
-        </SimpleGrid>
+        <Box position="relative" px={{ base: 0, md: 10 }}>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            navigation={{
+              nextEl: ".swiper-button-next-custom",
+              prevEl: ".swiper-button-prev-custom",
+            }}
+            breakpoints={{
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            // 🟢 FIX: Applying paginationColor and ensuring Swiper fills height
+            style={{
+              paddingBottom: "60px",
+              "--swiper-pagination-color": `var(--chakra-colors-${paginationColor.replace(
+                ".",
+                "-"
+              )})`,
+              "--swiper-theme-color": `var(--chakra-colors-${paginationColor.replace(
+                ".",
+                "-"
+              )})`,
+            }}
+          >
+            {testimonialsData.map((testimonial, index) => (
+              <SwiperSlide
+                key={index}
+                style={{
+                  display: "flex",
+                  height: "auto", // 🟢 FIX: Ensures cards stretch to equal height
+                }}
+              >
+                {/* Note: Ensure TestimonialCard has h="full" or h="100%" 
+                   in its outermost Box to catch this flex stretch!
+                */}
+                <TestimonialCard
+                  quote={testimonial.quote}
+                  clientName={testimonial.clientName}
+                  clientTitle={testimonial.clientTitle}
+                  delay={0}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <IconButton
+            className="swiper-button-prev-custom"
+            aria-label="Previous slide"
+            icon={<FiChevronLeft />}
+            position="absolute"
+            left="-15px"
+            top="50%"
+            transform="translateY(-50%)"
+            zIndex={10}
+            variant="ghost"
+            display={{ base: "none", md: "flex" }}
+            _hover={{ bg: "sgg.500", color: "white" }}
+          />
+          <IconButton
+            className="swiper-button-next-custom"
+            aria-label="Next slide"
+            icon={<FiChevronRight />}
+            position="absolute"
+            right="-15px"
+            top="50%"
+            transform="translateY(-50%)"
+            zIndex={10}
+            variant="ghost"
+            display={{ base: "none", md: "flex" }}
+            _hover={{ bg: "sgg.500", color: "white" }}
+          />
+        </Box>
       </Container>
     </Box>
   );
