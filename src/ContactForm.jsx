@@ -6,71 +6,109 @@ import {
   Textarea,
   Button,
   SimpleGrid,
+  Stack,
   useColorModeValue,
-  useToast, // 💡 New: For user feedback
+  useToast,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
-import { FiSend } from "react-icons/fi";
-import { useState } from "react"; // 💡 New: For managing form state
+import {
+  FiSend,
+  FiMessageCircle,
+  FiUser,
+  FiMail,
+  FiEdit3,
+} from "react-icons/fi";
+import { useState } from "react";
 
 const ContactForm = () => {
   const toast = useToast();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
-    subject: "Sustainable Grid Group Inquiry", // Default subject
+    subject: "Sustainable Grid Group Inquiry",
     message: "",
+    _honeypot: "", // 💡 Security: Honeypot field to catch bots
   });
   const [isLoading, setIsLoading] = useState(false);
 
   const inputBg = useColorModeValue("white", "sgg.700");
   const inputBorder = useColorModeValue("gray.300", "sgg.700");
+  const whatsappHoverBg = useColorModeValue("green.600", "green.500");
 
-  // 1. State Change Handler
   const handleChange = (e) => {
-    setFormState({
-      ...formState,
-      [e.target.id]: e.target.value,
-    });
+    setFormState({ ...formState, [e.target.id]: e.target.value });
   };
 
-  // 2. Mock Submission Handler
+  // --- 💡 VALIDATION LOGIC ---
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  };
+
+  // --- EMAIL SUBMISSION ---
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 1. Bot Check (Security)
+    if (formState._honeypot) return;
+
+    // 2. Validation Check
+    if (!validateEmail(formState.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        status: "error",
+        duration: 3000,
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // 💡 Placeholder for actual API call (e.g., using Axios or Fetch)
-      // In a real application, this would post to a serverless function (AWS Lambda, Azure, Firebase)
-      console.log("Submitting form data:", formState);
+      const response = await fetch(
+        "https://formsubmit.co/ajax/info@sustainablegridgroup.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            Name: formState.name,
+            Email: formState.email,
+            Subject: formState.subject,
+            Message: formState.message,
+            _subject: "New Website Inquiry: Sustainable Grid Group", // A clear, static subject
+            _template: "table", // Uses a structured table which looks less like a "bot" message
+            _captcha: "false",
+          }),
+        }
+      );
 
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // 3. Success Feedback
-      toast({
-        title: "Message Sent!",
-        description:
-          "Thank you for reaching out. We will respond within 48 hours.",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "top-right",
-      });
-
-      // Clear the form
-      setFormState({
-        name: "",
-        email: "",
-        subject: "Sustainable Grid Group Inquiry",
-        message: "",
-      });
+      if (response.ok) {
+        toast({
+          title: "Email Sent!",
+          status: "success",
+          position: "top-right",
+        });
+        setFormState({
+          name: "",
+          email: "",
+          subject: "Sustainable Grid Group Inquiry",
+          message: "",
+          _honeypot: "",
+        });
+      }
     } catch (error) {
-      // 4. Error Feedback
+      // 💡 FIX: We now use the 'error' variable by logging it
       console.error("Form Submission Error:", error);
+
       toast({
-        title: "Submission Failed.",
-        description:
-          "There was an error sending your message. Please try again later.",
+        title: "Submission Failed",
+        description: "Please try again later or use the WhatsApp option.",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -81,84 +119,116 @@ const ContactForm = () => {
     }
   };
 
+  // --- WHATSAPP REDIRECT ---
+  const handleWhatsApp = () => {
+    if (!formState.name || !formState.message) {
+      toast({ title: "Missing Info", status: "warning" });
+      return;
+    }
+    const phoneNumber = "254705976306";
+    const text = `*New Inquiry*\n*Name:* ${formState.name}\n*Message:* ${formState.message}`;
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`,
+      "_blank"
+    );
+  };
+
   return (
-    <Box
-      as="form"
-      onSubmit={handleSubmit}
-      p={{ base: 4, md: 8 }}
-      borderRadius="lg"
-    >
+    <Box as="form" onSubmit={handleSubmit} p={{ base: 4, md: 8 }}>
+      {/* 💡 SECURITY: Hidden Honeypot Field */}
+      <Input
+        type="text"
+        id="_honeypot"
+        display="none"
+        value={formState._honeypot}
+        onChange={handleChange}
+      />
+
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
-        {/* Name Field */}
         <FormControl id="name" isRequired>
-          <FormLabel visibility="hidden">Name</FormLabel>
-          <Input
-            type="text"
-            placeholder="Name"
-            bg={inputBg}
-            borderColor={inputBorder}
-            value={formState.name} // 💡 Controlled Input
-            onChange={handleChange} // 💡 State Handler
-            _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
-          />
+          <InputGroup>
+            <InputLeftElement children={<FiUser color="gray.500" />} />
+            <Input
+              placeholder="Full Name"
+              bg={inputBg}
+              borderColor={inputBorder}
+              value={formState.name}
+              onChange={handleChange}
+            />
+          </InputGroup>
         </FormControl>
 
-        {/* Email Field */}
         <FormControl id="email" isRequired>
-          <FormLabel visibility="hidden">Email</FormLabel>
-          <Input
-            type="email"
-            placeholder="Email"
-            bg={inputBg}
-            borderColor={inputBorder}
-            value={formState.email} // 💡 Controlled Input
-            onChange={handleChange} // 💡 State Handler
-            _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
-          />
+          <InputGroup>
+            <InputLeftElement children={<FiMail color="gray.500" />} />
+            <Input
+              type="email"
+              placeholder="Email Address"
+              bg={inputBg}
+              borderColor={inputBorder}
+              value={formState.email}
+              onChange={handleChange}
+            />
+          </InputGroup>
         </FormControl>
       </SimpleGrid>
 
-      {/* Subject Field (Non-required, default value) */}
       <FormControl id="subject" mt={6}>
-        <FormLabel visibility="hidden">Subject</FormLabel>
-        <Input
-          type="text"
-          placeholder="Subject"
-          bg={inputBg}
-          borderColor={inputBorder}
-          value={formState.subject} // 💡 Controlled Input
-          onChange={handleChange} // 💡 State Handler
-          _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
-        />
+        <InputGroup>
+          <InputLeftElement children={<FiEdit3 color="gray.500" />} />
+          <Input
+            placeholder="Subject"
+            bg={inputBg}
+            borderColor={inputBorder}
+            value={formState.subject}
+            onChange={handleChange}
+          />
+        </InputGroup>
       </FormControl>
 
-      {/* Message Field */}
       <FormControl id="message" isRequired mt={6}>
-        <FormLabel visibility="hidden">Message</FormLabel>
         <Textarea
-          placeholder="Send Message..."
+          placeholder="Your Message..."
           bg={inputBg}
           borderColor={inputBorder}
           rows={5}
-          value={formState.message} // 💡 Controlled Input
-          onChange={handleChange} // 💡 State Handler
-          _placeholder={{ color: useColorModeValue("gray.500", "gray.400") }}
+          value={formState.message}
+          onChange={handleChange}
         />
       </FormControl>
 
-      {/* Submit Button */}
-      <Button
-        type="submit"
-        variant="solid"
-        size="lg"
-        mt={6}
-        px={10}
-        rightIcon={<FiSend />}
-        isLoading={isLoading} // 💡 Show spinner while submitting
-        loadingText="Sending"
-      >
-        Send Message
-      </Button>
+      <Stack direction={{ base: "column", md: "row" }} spacing={4} mt={8}>
+        <Button
+          type="submit"
+          variant="solid"
+          size="lg"
+          flex={1}
+          rightIcon={<FiSend />}
+          isLoading={isLoading}
+        >
+          Send Email
+        </Button>
+
+        <Button
+          onClick={handleWhatsApp}
+          variant="outline"
+          size="lg"
+          flex={1}
+          // 💡 STYLING FIX: Explicit colors for hover to prevent disappearing text
+          borderColor="whatsapp.500"
+          color={useColorModeValue("whatsapp.600", "whatsapp.400")}
+          leftIcon={<FiMessageCircle />}
+          _hover={{
+            bg: whatsappHoverBg,
+            color: "white",
+            borderColor: whatsappHoverBg,
+            transform: "translateY(-2px)",
+          }}
+          transition="all 0.2s"
+        >
+          Send WhatsApp
+        </Button>
+      </Stack>
     </Box>
   );
 };
