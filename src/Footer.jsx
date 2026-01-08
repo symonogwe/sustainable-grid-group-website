@@ -14,9 +14,11 @@ import {
 import { FiFacebook, FiTwitter, FiLinkedin } from "react-icons/fi";
 import { Link as ReactRouterLink } from "react-router-dom";
 
+const logo = "/src/assets/SGGL-logo.svg";
+
 const Footer = () => {
   // Dummy logo source
-  const logoSrc = "/src/assets/SGG-logo.svg";
+  const logoSrc = logo;
 
   const QuickLinks = [
     "About Us",
@@ -43,7 +45,7 @@ const Footer = () => {
             <Image
               src={logoSrc}
               alt="Sustainable Grid Group"
-              h="120px"
+              h="150px"
               w="auto"
               objectFit="contain"
             />
