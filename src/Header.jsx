@@ -15,7 +15,9 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import MobileMenu from "./MobileMenu";
 
-const logoSrc = "/src/assets/SGGL-logo.svg";
+import logo from "../src/assets/SGGL-logo.svg";
+
+// const logoSrc = "/src/assets/SGGL-logo.svg";
 
 const Logo = () => {
   const handleLogoClick = () => {
@@ -32,7 +34,7 @@ const Logo = () => {
       alignItems="center"
     >
       <Image
-        src={logoSrc}
+        src={logo}
         alt="Sustainable Grid Group"
         h={{ base: "260px", md: "290px" }}
         objectFit="contain"
