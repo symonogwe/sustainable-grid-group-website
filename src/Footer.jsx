@@ -110,7 +110,7 @@
 //               info@sustainablegrid.com
 //             </Text>
 //             <Text fontSize="sm" color="gray.400">
-//               +254705976306
+//               +254 711 130 179
 //             </Text>
 //             <Text fontSize="sm" color="gray.400">
 //               Riverside Dr, Nairobi, Kenya
@@ -247,7 +247,7 @@ const Footer = () => {
               info@sustainablegrid.com
             </Text>
             <Text fontSize="sm" color="gray.400">
-              +254705976306
+              +254 711 130 179
             </Text>
             <Text fontSize="sm" color="gray.400">
               Riverside Dr, Nairobi, Kenya
