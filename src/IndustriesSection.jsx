@@ -13,21 +13,45 @@ import AnimateOnScroll from "./MotionBox";
 
 // Import domain-specific icons
 import {
-  FiBriefcase,
-  FiGlobe,
-  FiDollarSign,
+  FiSun,
+  FiFeather,
   FiSettings,
-  FiZap,
   FiHeart,
+  FiZap,
+  FiCloudRain,
+  FiGlobe,
+  FiFlag,
+  FiUsers,
+  FiDollarSign,
+  FiPackage,
+  FiShare2,
+  FiLayers,
+  FiCoffee,
+  FiDroplet,
+  FiHexagon,
+  FiSend,
+  FiHome,
 } from "react-icons/fi";
 
 const industriesData = [
-  { icon: FiBriefcase, label: "Corporate" },
-  { icon: FiGlobe, label: "Public Sector" },
-  { icon: FiDollarSign, label: "NGOs" },
+  { icon: FiSun, label: "Agriculture" },
+  { icon: FiFeather, label: "Wild Harvesting" },
   { icon: FiSettings, label: "Manufacturing" },
-  { icon: FiZap, label: "Energy" },
   { icon: FiHeart, label: "Healthcare" },
+  { icon: FiZap, label: "Renewable Energy" },
+  { icon: FiCloudRain, label: "Climate Change" },
+  { icon: FiGlobe, label: "Development Organizations" },
+  { icon: FiFlag, label: "Government Institutions" },
+  { icon: FiUsers, label: "NGOs" },
+  { icon: FiDollarSign, label: "Financial Services" },
+  { icon: FiPackage, label: "Producer Organizations" },
+  { icon: FiShare2, label: "Cooperatives" },
+  { icon: FiLayers, label: "Construction" },
+  { icon: FiCoffee, label: "Food Processing" },
+  { icon: FiDroplet, label: "Natural Gums and Resins" },
+  { icon: FiHexagon, label: "Essential Oils" },
+  { icon: FiSend, label: "Export Companies" },
+  { icon: FiHome, label: "Community-Based Organizations" },
 ];
 
 const IndustriesSection = () => {
@@ -62,7 +86,7 @@ const IndustriesSection = () => {
 
         {/* Industries Grid */}
         <SimpleGrid
-          columns={{ base: 2, sm: 3, md: 6 }} // 2 on mobile, 3 on tablet, 6 on PC
+          columns={{ base: 2, sm: 3, md: 4, lg: 6 }} // 2 on mobile, 3 on small tablet, 4 on tablet, 6 on PC
           spacing={{ base: 6, md: 10 }}
         >
           {industriesData.map((industry, index) => (

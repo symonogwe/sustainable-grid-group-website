@@ -125,7 +125,7 @@ const ContactForm = () => {
       toast({ title: "Missing Info", status: "warning" });
       return;
     }
-    const phoneNumber = "254705976306";
+    const phoneNumber = "254711130179";
     const text = `*New Inquiry*\n*Name:* ${formState.name}\n*Message:* ${formState.message}`;
     window.open(
       `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`,

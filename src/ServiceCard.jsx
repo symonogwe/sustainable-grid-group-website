@@ -1,27 +1,14 @@
 // src/components/ServiceCard.jsx
 
-import {
-  Box,
-  Heading,
-  Text,
-  useColorModeValue,
-  Icon, // Import Icon component
-} from "@chakra-ui/react";
-// Import icons for placeholders (FiCheckCircle is a clean choice)
-import {
-  FiCheckCircle,
-  FiShield,
-  FiBriefcase,
-  FiZap,
-  FiTarget,
-  FiBarChart2,
-} from "react-icons/fi";
+import { Box, Heading, Text, Flex, useColorModeValue, Icon } from "@chakra-ui/react";
+import { FiArrowRight } from "react-icons/fi";
 import AnimateOnScroll from "./MotionBox";
 
-const ServiceCard = ({ icon, title, description, delay }) => {
+const ServiceCard = ({ icon, title, description, delay, onClick }) => {
   const bg = useColorModeValue("white", "sgg.700");
   const iconColor = useColorModeValue("sgg.500", "sgg.500"); // Green accent for the icon
   const titleColor = useColorModeValue("sgg.900", "sgg.100");
+  const descriptionColor = useColorModeValue("gray.600", "sgg.100");
 
   return (
     // Use AnimateOnScroll here for a staggered entrance effect!
@@ -33,6 +20,10 @@ const ServiceCard = ({ icon, title, description, delay }) => {
         shadow="lg"
         transition="all 0.3s ease"
         h="full"
+        display="flex"
+        flexDirection="column"
+        cursor="pointer"
+        onClick={onClick}
         // Subtle hover effect
         _hover={{
           transform: "translateY(-4px)",
@@ -47,9 +38,21 @@ const ServiceCard = ({ icon, title, description, delay }) => {
           {title}
         </Heading>
 
-        <Text fontSize="sm" color={useColorModeValue("gray.600", "sgg.100")}>
+        <Text fontSize="sm" color={descriptionColor} mb={4}>
           {description}
         </Text>
+
+        {/* Read More affordance — pinned to the bottom of the card */}
+        <Flex
+          align="center"
+          mt="auto"
+          fontSize="sm"
+          fontWeight="bold"
+          color="sgg.500"
+        >
+          Read More
+          <Icon as={FiArrowRight} w={4} h={4} ml={2} />
+        </Flex>
       </Box>
     </AnimateOnScroll>
   );

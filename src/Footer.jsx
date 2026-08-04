@@ -110,7 +110,7 @@
 //               info@sustainablegrid.com
 //             </Text>
 //             <Text fontSize="sm" color="gray.400">
-//               +254705976306
+//               +254 711 130 179
 //             </Text>
 //             <Text fontSize="sm" color="gray.400">
 //               Riverside Dr, Nairobi, Kenya
@@ -149,20 +149,34 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { FiFacebook, FiTwitter, FiLinkedin } from "react-icons/fi";
-import { Link as ReactRouterLink } from "react-router-dom";
 
 import logo from "../src/assets/SGGL-logo.svg";
 
 const Footer = () => {
   // Dummy logo source
 
-  const QuickLinks = [
-    "About Us",
-    "Services",
-    "Case Studies",
-    "ESG Framework",
-    "Careers",
+  // 🟢 FIX: These now point at real in-page section ids (scroll targets)
+  // instead of react-router paths that had no matching route. "ESG
+  // Framework" and "Careers" were removed — no section exists for either.
+  const quickLinks = [
+    { name: "About Us", id: "about" },
+    { name: "Services", id: "services" },
+    { name: "Case Studies", id: "case-studies" },
   ];
+
+  // 🟢 FIX: Anchor-scroll handler mirroring the Header nav pattern
+  // (getElementById + offset-aware scrollTo, accounting for the sticky
+  // 90px header) instead of a dead router Link.
+  const handleQuickLinkClick = (e, id) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const headerOffset = 90;
+    const y =
+      target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
 
   return (
     // 🟢 Use tokens directly from the theme
@@ -224,16 +238,16 @@ const Footer = () => {
             <Text fontWeight="bold" fontSize="md" mb={2}>
               Quick Links
             </Text>
-            {QuickLinks.map((link) => (
+            {quickLinks.map((link) => (
               <ChakraLink
-                key={link}
-                as={ReactRouterLink}
-                to={`/${link.toLowerCase().replace(" ", "-")}`}
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => handleQuickLinkClick(e, link.id)}
                 fontSize="sm"
                 color="gray.400" // 🟢 Use token
                 _hover={{ color: "sgg.500" }}
               >
-                {link}
+                {link.name}
               </ChakraLink>
             ))}
           </Stack>
@@ -247,7 +261,7 @@ const Footer = () => {
               info@sustainablegrid.com
             </Text>
             <Text fontSize="sm" color="gray.400">
-              +254705976306
+              +254 711 130 179
             </Text>
             <Text fontSize="sm" color="gray.400">
               Riverside Dr, Nairobi, Kenya
