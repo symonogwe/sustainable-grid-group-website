@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
 import StatsBar from "./StatsBar";
+import AboutSection from "./AboutSection";
 import ServicesSection from "./ServiceSection";
 import IndustriesSection from "./IndustriesSection";
 import CaseStudiesSection from "./CaseStudiesSection";
@@ -17,6 +18,7 @@ function App() {
       <main>
         <HeroSection />
         <StatsBar />
+        <AboutSection />
         <ServicesSection />
         <IndustriesSection />
         <CaseStudiesSection />

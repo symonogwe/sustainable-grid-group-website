@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Box,
   Flex,
@@ -48,9 +47,6 @@ const Header = () => {
   const bg = useColorModeValue("navbar.light", "navbar.dark");
   const color = useColorModeValue("sgg.900", "sgg.100");
 
-  // ✅ store the section we want to scroll to AFTER drawer closes
-  const [pendingScrollId, setPendingScrollId] = useState(null);
-
   const navItems = [
     { name: "About", id: "about" },
     { name: "Services", id: "services" },
@@ -73,24 +69,12 @@ const Header = () => {
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
-  // ✅ desktop click: scroll immediately
-  const handleDesktopNavClick = (e, id) => {
+  // ✅ shared click handler — used by both the desktop links and the mobile
+  // drawer (passed down as `handleScrollToSection`, matching what
+  // MobileMenu.jsx destructures)
+  const handleScrollToSection = (e, id) => {
     e.preventDefault();
     scrollToSection(id);
-  };
-
-  // ✅ mobile click: close drawer first (body scroll is locked while drawer open)
-  const handleMobileNavClick = (e, id) => {
-    e.preventDefault();
-    setPendingScrollId(id);
-    onClose();
-  };
-
-  // ✅ runs when drawer has fully closed
-  const handleDrawerClosed = () => {
-    if (!pendingScrollId) return;
-    scrollToSection(pendingScrollId);
-    setPendingScrollId(null);
   };
 
   return (
@@ -124,7 +108,7 @@ const Header = () => {
               <ChakraLink
                 key={item.id}
                 href={`#${item.id}`}
-                onClick={(e) => handleDesktopNavClick(e, item.id)}
+                onClick={(e) => handleScrollToSection(e, item.id)}
                 p={2}
                 fontSize={"sm"}
                 fontWeight={600}
@@ -149,7 +133,7 @@ const Header = () => {
           {/* Desktop CTA */}
           <Button
             href="#contact"
-            onClick={(e) => handleDesktopNavClick(e, "contact")}
+            onClick={(e) => handleScrollToSection(e, "contact")}
             display={{ base: "none", md: "inline-flex" }}
             variant="solid"
             size="sm"
@@ -179,8 +163,7 @@ const Header = () => {
         isOpen={isOpen}
         onClose={onClose}
         navItems={navItems}
-        handleMobileNavClick={handleMobileNavClick}
-        onDrawerClosed={handleDrawerClosed}
+        handleScrollToSection={handleScrollToSection}
       />
     </Box>
   );
