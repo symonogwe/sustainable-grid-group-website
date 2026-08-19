@@ -10,10 +10,18 @@ import {
 import AnimateOnScroll from "./MotionBox";
 import { FiMessageSquare } from "react-icons/fi";
 
-const TestimonialCard = ({ quote, clientName, clientTitle, delay }) => {
+const TestimonialCard = ({
+  quote,
+  clientName,
+  clientTitle,
+  company,
+  delay,
+}) => {
   const bg = useColorModeValue("white", "sgg.700");
   const quoteColor = useColorModeValue("gray.700", "sgg.100");
   const clientColor = useColorModeValue("sgg.900", "sgg.500");
+  const companyColor = useColorModeValue("sgg.700", "sgg.500");
+  const titleColor = useColorModeValue("gray.500", "gray.400");
 
   return (
     <AnimateOnScroll delay={delay}>
@@ -68,9 +76,16 @@ const TestimonialCard = ({ quote, clientName, clientTitle, delay }) => {
           <Text fontWeight="bold" color={clientColor} fontSize="md">
             {clientName}
           </Text>
-          <Text fontSize="sm" color={useColorModeValue("gray.500", "gray.400")}>
-            {clientTitle}
-          </Text>
+          {clientTitle && (
+            <Text fontSize="sm" color={titleColor}>
+              {clientTitle}
+            </Text>
+          )}
+          {company && (
+            <Text fontSize="sm" color={companyColor} mt={1}>
+              {company}
+            </Text>
+          )}
         </Box>
       </Box>
     </AnimateOnScroll>

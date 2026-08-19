@@ -7,6 +7,7 @@ import ServicesSection from "./ServiceSection";
 import IndustriesSection from "./IndustriesSection";
 import CaseStudiesSection from "./CaseStudiesSection";
 import TestimonialsSection from "./TestimonialsSection";
+import ClientsSection from "./ClientsSection";
 import ContactSection from "./ContactSection";
 import Footer from "./Footer";
 import TeamSection from "./TeamSection";
@@ -23,6 +24,7 @@ function App() {
         <IndustriesSection />
         <CaseStudiesSection />
         <TestimonialsSection />
+        <ClientsSection />
         <TeamSection />
         <ContactSection />
         <Footer />

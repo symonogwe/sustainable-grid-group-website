@@ -19,33 +19,38 @@ import "swiper/css/pagination";
 const testimonialsData = [
   {
     quote:
-      "Sustainable Grid Group provided clear, actionable strategy. Their guidance was instrumental in shifting our operations towards carbon neutrality.",
-    clientName: "Sarah L., CEO of EkoGrade Corp",
-    clientTitle: "Client, Manufacturing Sector",
+      "Sustainable Grid Group demonstrated a deep understanding of climate governance and organizational development. Their support helped us strengthen our strategic planning and institutional capacity, positioning us to deliver greater value to our stakeholders and communities.",
+    clientName: "Jane Sidi",
+    clientTitle: "Secretary General",
+    company: "Kilifi Climate Change and Governance Platform",
   },
   {
     quote:
-      "Navigating the complexities of ESG made it effortless and helped us identify immediate value chains for growth.",
-    clientName: "Michael B., Director at Tech Solutions",
-    clientTitle: "Partner, Technology Sector",
+      "Sustainable Grid Group provided practical, well-structured advisory services that strengthened our management systems and compliance processes. Their professional approach and attention to detail helped us improve operational efficiency and establish a solid foundation for sustainable growth.",
+    clientName: "Balaji Rathinavelu",
+    clientTitle: "Project Manager",
+    company: "Ezeetec Limited",
   },
   {
     quote:
-      "Their innovative improvements gave us 45% reduction in key resource consumption. A professional and highly efficient team.",
-    clientName: "James Warner, Operations Head, Choice Logistics",
-    clientTitle: "Client, Logistics Sector",
+      "Sustainable Grid Group partnered with us to strengthen our organizational systems and governance structures. Their technical expertise and collaborative approach helped us improve accountability, operational effectiveness, and long-term sustainability.",
+    clientName: "Dr. Phelix Wandera",
+    clientTitle: "Liaison Officer",
+    company: "Stable Health Foundation",
   },
   {
     quote:
-      "The depth of their ESG analysis exceeded our expectations. They didn't just point out gaps; they built the bridges to cross them.",
-    clientName: "Elena Rodriguez, Sustainability Lead",
-    clientTitle: "Client, Renewable Energy",
+      "Sustainable Grid Group provided exceptional advisory services that helped us improve our management systems and organizational processes. Their practical recommendations and commitment to excellence have strengthened our capacity to deliver high-quality training and consulting services.",
+    clientName: "Desmond Manadela",
+    clientTitle: "Managing Director",
+    company: "Quality Care Trainers Limited",
   },
   {
     quote:
-      "A transformative experience for our leadership team. We now view sustainability as a competitive advantage.",
-    clientName: "David Chen, COO of Apex Global",
-    clientTitle: "Partner, International Trade",
+      "The team at Sustainable Grid Group delivered professional and practical support that enhanced our quality management and compliance processes. Their guidance has contributed to improved operational performance and reinforced our commitment to delivering quality healthcare services.",
+    clientName: "Dr. Bonface Onsongo",
+    clientTitle: "",
+    company: "Equity Afya",
   },
 ];
 
@@ -98,8 +103,9 @@ const TestimonialsSection = () => {
               prevEl: ".swiper-button-prev-custom",
             }}
             breakpoints={{
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
+              0: { slidesPerView: 1, spaceBetween: 20 },
+              768: { slidesPerView: 1, spaceBetween: 24 },
+              1024: { slidesPerView: 2, spaceBetween: 32 },
             }}
             // 🟢 FIX: Applying paginationColor and ensuring Swiper fills height
             style={{
@@ -129,6 +135,7 @@ const TestimonialsSection = () => {
                   quote={testimonial.quote}
                   clientName={testimonial.clientName}
                   clientTitle={testimonial.clientTitle}
+                  company={testimonial.company}
                   delay={0}
                 />
               </SwiperSlide>
