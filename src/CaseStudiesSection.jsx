@@ -28,25 +28,25 @@ import ssg3 from "../src/assets/ssg3.jpg";
 
 const caseStudiesData = [
   {
-    title: "Reduced Carbon Footprint by 30% for EnergyCo",
+    title: "Grow Bright Future Africa",
     impact: "Environmental Impact",
     imageSrc: ssg1,
     fullContent:
-      "In partnership with EnergyCo, SGG conducted an end-to-end carbon audit of their supply chain. We identified significant inefficiencies in logistics and aging machinery. By implementing renewable energy microgrids and optimizing route logistics, we achieved a verified 30% reduction in CO2 emissions within 18 months, leading to a direct saving of $1.2M in annual energy costs.",
+      "SGG partnered with Grow Bright Future Africa to strengthen its environmental, social, and governance (ESG) performance by conducting an Environmental and Social Impact Assessment (ESIA) to identify and manage project risks. We developed a Safeguarding Policy, Grievance Redress Mechanism, ESG policies, a Risk Management Framework, and compliance tools to support responsible project implementation, effective risk management, and sound organizational governance. We also strengthened governance and accountability systems while supporting compliance with donor and government environmental and social requirements. Through targeted capacity-building for board and staff members on transparency, ethics, accountability, and good governance, we helped build a resilient organization equipped to deliver sustainable and responsible development outcomes.",
   },
   {
-    title: "Achieved 95% Community Engagement for HealthCorp",
-    impact: "Social Impact",
+    title: "Stable Health Foundation",
+    impact: "88% Programme Impact",
     imageSrc: ssg4,
     fullContent:
-      "HealthCorp faced local resistance regarding their new facility expansions. SGG designed a Social Impact Management Plan that included transparent stakeholder forums and a localized recruitment drive. By aligning corporate goals with community needs, we boosted positive brand sentiment and achieved a record 95% engagement rate, ensuring a smooth project rollout without legal delays.",
+      "SGG helped Stable Health Foundation achieve an 88% overall programme impact score through our monitoring and evaluation assessment, demonstrating strong performance in supporting street-connected children, promoting healthy ageing, and preventing lifestyle-related diseases. Our evaluation strengthened programme accountability, enhanced evidence-based decision-making, and identified opportunities for continuous improvement and long-term sustainability. This partnership advances SDG 3 (Good Health and Well-being), SDG 10 (Reduced Inequalities), and SDG 17 (Partnerships for the Goals), reinforcing our commitment to delivering measurable and sustainable social impact.",
   },
   {
-    title: "Secured ISO 14001 Certification for Koko",
-    impact: "Governance & Compliance",
+    title: "Kilifi Climate Change & Governance Platform",
+    impact: "94% Governance Score",
     imageSrc: ssg3,
     fullContent:
-      "Koko Limited required international compliance to enter European markets. SGG led a comprehensive Environmental Management System (EMS) overhaul. We streamlined their waste management protocols and internal reporting structures. This transformation not only secured the ISO 14001 certification on the first attempt but also improved operational efficiency by 15% through waste reduction.",
+      "Sustainable Grid Group (SGG) partnered with the Kilifi Climate Change and Governance Platform (KCCGP) to strengthen its governance and institutional capacity, achieving a 94% Governance & Compliance Strengthening Score through our assessment and advisory support. Our work included reviewing and strengthening governance structures and Board roles, aligning organizational governance with the Public Benefits Organizations (PBO) Act and other relevant Kenyan legislation, building Board and leadership capacity in ethical governance and fiduciary responsibilities, conducting due diligence for local and international investors, developing robust management systems, and enhancing community feedback and response mechanisms. These interventions improved organizational accountability, transparency, regulatory compliance, and stakeholder confidence, contributing to SDG 16 (Peace, Justice and Strong Institutions) and SDG 17 (Partnerships for the Goals).",
   },
 ];
 
