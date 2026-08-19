@@ -1,9 +1,9 @@
 import {
   Box,
   Container,
+  Flex,
   Heading,
   Text,
-  SimpleGrid,
   VStack,
   Avatar,
   useColorModeValue,
@@ -12,29 +12,29 @@ import {
 
 const teamMembers = [
   {
-    name: "Smith Orwa",
+    name: "Collins Otieno",
     role: "Chief Sustainability Officer",
-    initials: "SO",
-    // 💡 Assigned brand-aligned colors to each member
-    colorScheme: "teal",
+    initials: "CO",
   },
   {
-    name: "Sarah Jenkins",
-    role: "Head of ESG Strategy",
-    initials: "SJ",
-    colorScheme: "blue",
+    name: "Yasin Koech",
+    role: "Chief Operations Officer",
+    initials: "YK",
   },
   {
-    name: "Marcus Chen",
-    role: "Environmental Compliance Lead",
-    initials: "MC",
-    colorScheme: "cyan",
+    name: "Desmond Mandela",
+    role: "Chief Strategy Officer",
+    initials: "DM",
   },
   {
-    name: "Elena Rodriguez",
-    role: "Social Impact Director",
-    initials: "ER",
-    colorScheme: "orange",
+    name: "Hopline Banda",
+    role: "Chief People & Culture Officer",
+    initials: "HB",
+  },
+  {
+    name: "Samuel Karuga",
+    role: "Chief Legal & Compliance Officer",
+    initials: "SK",
   },
 ];
 
@@ -45,6 +45,8 @@ const TeamSection = () => {
   const roleColor = useColorModeValue("sgg.600", "sgg.400");
   const subTextColor = useColorModeValue("gray.600", "gray.400");
   const avatarBorder = useColorModeValue("sgg.50", "sgg.800");
+  const avatarBg = useColorModeValue("sgg.900", "sgg.500");
+  const avatarColor = useColorModeValue("sgg.100", "sgg.900");
 
   return (
     <Box
@@ -69,47 +71,61 @@ const TeamSection = () => {
           </Text>
         </VStack>
 
-        <SimpleGrid
-          columns={{ base: 1, sm: 2, md: 4 }}
-          spacing={{ base: 10, md: 8 }}
+        {/* Flex + wrap so the 5 cards collapse into a centered executive
+            band at lg, instead of leaving an orphaned trailing card the
+            way a fixed-column SimpleGrid would at 5 items. Mirrors the
+            SUSTAIN band technique in AboutSection.jsx. */}
+        <Flex
+          wrap="wrap"
+          justify="center"
+          gap={{ base: 6, md: 8, lg: 6 }}
         >
           {teamMembers.map((member, index) => (
-            <VStack
+            <Box
               key={index}
-              spacing={4}
-              p={6}
-              borderRadius="xl"
-              transition="all 0.3s"
-              _hover={{ transform: "translateY(-10px)" }}
+              flex={{
+                base: "1 1 100%",
+                sm: "1 1 calc(50% - 12px)",
+                md: "1 1 calc(33.333% - 21.333px)",
+                lg: "0 1 calc(20% - 19.2px)",
+              }}
             >
-              <Avatar
-                size="2xl"
-                name={member.name}
-                // 💡 Using colorScheme makes it "Pop" based on the data
-                colorScheme={member.colorScheme}
-                fontWeight="bold"
-                boxShadow="2xl"
-                borderWidth="4px"
-                borderColor={avatarBorder} // 🟢 Using the top-level hook variable here
-              />
-
-              <Stack spacing={1} textAlign="center">
-                <Text fontWeight="bold" fontSize="xl" color={headingColor}>
-                  {member.name}
-                </Text>
-                <Text
-                  fontSize="xs"
+              <VStack
+                spacing={4}
+                p={6}
+                borderRadius="xl"
+                transition="all 0.3s"
+                _hover={{ transform: "translateY(-10px)" }}
+              >
+                <Avatar
+                  size="2xl"
+                  name={member.name}
+                  bg={avatarBg}
+                  color={avatarColor}
                   fontWeight="bold"
-                  color={roleColor}
-                  textTransform="uppercase"
-                  letterSpacing="widest"
-                >
-                  {member.role}
-                </Text>
-              </Stack>
-            </VStack>
+                  boxShadow="2xl"
+                  borderWidth="4px"
+                  borderColor={avatarBorder} // 🟢 Using the top-level hook variable here
+                />
+
+                <Stack spacing={1} textAlign="center">
+                  <Text fontWeight="bold" fontSize="xl" color={headingColor}>
+                    {member.name}
+                  </Text>
+                  <Text
+                    fontSize="xs"
+                    fontWeight="bold"
+                    color={roleColor}
+                    textTransform="uppercase"
+                    letterSpacing="widest"
+                  >
+                    {member.role}
+                  </Text>
+                </Stack>
+              </VStack>
+            </Box>
           ))}
-        </SimpleGrid>
+        </Flex>
       </Container>
     </Box>
   );
