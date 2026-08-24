@@ -15,26 +15,31 @@ const teamMembers = [
     name: "Collins Otieno",
     role: "Chief Sustainability Officer",
     initials: "CO",
+    imageSrc: "/team/collins-otieno.jpg",
   },
   {
     name: "Yasin Koech",
     role: "Chief Operations Officer",
     initials: "YK",
+    imageSrc: "/team/yasin-koech.jpg",
   },
   {
     name: "Desmond Mandela",
     role: "Chief Strategy Officer",
     initials: "DM",
+    imageSrc: "/team/desmond-mandela.jpg",
   },
   {
-    name: "Hopline Banda",
+    name: "Alviana Muturi",
     role: "Chief People & Culture Officer",
-    initials: "HB",
+    initials: "AM",
+    imageSrc: "/team/alviana-muturi.jpg",
   },
   {
     name: "Samuel Karuga",
     role: "Chief Legal & Compliance Officer",
     initials: "SK",
+    imageSrc: "/team/samuel-karuga.jpg",
   },
 ];
 
@@ -100,6 +105,7 @@ const TeamSection = () => {
                 <Avatar
                   size="2xl"
                   name={member.name}
+                  src={member.imageSrc}
                   bg={avatarBg}
                   color={avatarColor}
                   fontWeight="bold"
