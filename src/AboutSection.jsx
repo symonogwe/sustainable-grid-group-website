@@ -88,9 +88,9 @@ const whyUsData = [
 
 // --- Sub-component: Vision / Mission card ---
 const InfoCard = ({ icon, title, body, delay }) => {
-  const bg = useColorModeValue("white", "sgg.700");
-  const titleColor = useColorModeValue("sgg.900", "sgg.100");
-  const bodyColor = useColorModeValue("gray.600", "sgg.100");
+  const bg = useColorModeValue("white", "dark.surface");
+  const titleColor = useColorModeValue("sgg.900", "dark.text");
+  const bodyColor = useColorModeValue("gray.600", "dark.text");
 
   return (
     <AnimateOnScroll delay={delay}>
@@ -117,9 +117,9 @@ const InfoCard = ({ icon, title, body, delay }) => {
 
 // --- Sub-component: SUSTAIN core value card ---
 const CoreValueCard = ({ letter, name, description, delay }) => {
-  const bg = useColorModeValue("white", "sgg.700");
-  const nameColor = useColorModeValue("sgg.900", "sgg.100");
-  const descriptionColor = useColorModeValue("gray.600", "sgg.100");
+  const bg = useColorModeValue("white", "dark.surface");
+  const nameColor = useColorModeValue("sgg.900", "dark.text");
+  const descriptionColor = useColorModeValue("gray.600", "dark.text");
 
   return (
     <AnimateOnScroll delay={delay}>
@@ -157,12 +157,12 @@ const CoreValueCard = ({ letter, name, description, delay }) => {
 
 const AboutSection = () => {
   // 🟢 All hooks defined at the top level of the component
-  const sectionBg = useColorModeValue("white", "sgg.900");
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
-  const bodyTextColor = useColorModeValue("gray.600", "sgg.100");
+  const sectionBg = useColorModeValue("white", "dark.canvas");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
+  const bodyTextColor = useColorModeValue("gray.600", "dark.text");
   const purposeGradient = useColorModeValue(
     "linear(to-br, sgg.100, white)",
-    "linear(to-br, sgg.900, sgg.700)"
+    "linear(to-br, dark.surface, dark.elevated)"
   );
 
   return (

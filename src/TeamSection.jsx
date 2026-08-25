@@ -45,11 +45,11 @@ const teamMembers = [
 
 const TeamSection = () => {
   // 🟢 SENIOR DEV FIX: Define hooks at the top level
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
-  const bgColor = useColorModeValue("white", "sgg.900");
-  const roleColor = useColorModeValue("sgg.600", "sgg.400");
-  const subTextColor = useColorModeValue("gray.600", "gray.400");
-  const avatarBorder = useColorModeValue("sgg.50", "sgg.800");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
+  const bgColor = useColorModeValue("white", "dark.canvas");
+  const roleColor = useColorModeValue("sgg.600", "dark.muted");
+  const subTextColor = useColorModeValue("gray.600", "dark.muted");
+  const avatarBorder = useColorModeValue("sgg.50", "dark.border");
   const avatarBg = useColorModeValue("sgg.900", "sgg.500");
   const avatarColor = useColorModeValue("sgg.100", "sgg.900");
 

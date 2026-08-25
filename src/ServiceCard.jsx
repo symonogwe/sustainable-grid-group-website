@@ -5,10 +5,10 @@ import { FiArrowRight } from "react-icons/fi";
 import AnimateOnScroll from "./MotionBox";
 
 const ServiceCard = ({ icon, title, description, delay, onClick }) => {
-  const bg = useColorModeValue("white", "sgg.700");
+  const bg = useColorModeValue("white", "dark.surface");
   const iconColor = useColorModeValue("sgg.500", "sgg.500"); // Green accent for the icon
-  const titleColor = useColorModeValue("sgg.900", "sgg.100");
-  const descriptionColor = useColorModeValue("gray.600", "sgg.100");
+  const titleColor = useColorModeValue("sgg.900", "dark.text");
+  const descriptionColor = useColorModeValue("gray.600", "dark.text");
 
   return (
     // Use AnimateOnScroll here for a staggered entrance effect!

@@ -55,11 +55,11 @@ const CaseStudiesSection = () => {
   const [selectedStudy, setSelectedStudy] = useState(null);
 
   // 🟢 SENIOR DEV FIX: Define all hooks at the top level of the component
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
-  const bgColor = useColorModeValue("sgg.100", "sgg.900");
-  const modalBg = useColorModeValue("white", "sgg.800");
-  const subHeaderColor = useColorModeValue("gray.600", "sgg.100");
-  const modalBodyTextColor = useColorModeValue("gray.700", "gray.200");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
+  const bgColor = useColorModeValue("sgg.100", "dark.canvas");
+  const modalBg = useColorModeValue("white", "dark.elevated");
+  const subHeaderColor = useColorModeValue("gray.600", "dark.text");
+  const modalBodyTextColor = useColorModeValue("gray.700", "dark.text");
 
   const handleReadMore = (study) => {
     setSelectedStudy(study);

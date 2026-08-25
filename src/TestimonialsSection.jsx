@@ -55,8 +55,8 @@ const testimonialsData = [
 ];
 
 const TestimonialsSection = () => {
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
-  const bgColor = useColorModeValue("sgg.100", "sgg.900");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
+  const bgColor = useColorModeValue("sgg.100", "dark.canvas");
 
   // 🟢 FIX: Properly using paginationColor
   const paginationColor = useColorModeValue("sgg.900", "sgg.500");
@@ -86,7 +86,7 @@ const TestimonialsSection = () => {
           mx="auto"
           mb={12}
           fontSize="lg"
-          color={useColorModeValue("gray.600", "sgg.100")}
+          color={useColorModeValue("gray.600", "dark.text")}
         >
           Building impactful partnerships is at the heart of what we do.
         </Text>

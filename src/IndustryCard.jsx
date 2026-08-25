@@ -5,8 +5,8 @@ import AnimateOnScroll from "./MotionBox";
 
 const IndustryCard = ({ icon, label, delay }) => {
   // 🟢 FIX: This hook value is now explicitly used below
-  const iconColor = useColorModeValue("sgg.900", "sgg.100"); // Dark on light, Light on dark
-  const bgColor = useColorModeValue("white", "sgg.700");
+  const iconColor = useColorModeValue("sgg.900", "dark.text"); // Dark on light, Light on dark
+  const bgColor = useColorModeValue("white", "dark.surface");
 
   return (
     <AnimateOnScroll delay={delay}>

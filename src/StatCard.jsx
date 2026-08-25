@@ -5,13 +5,13 @@ import CountUp from "react-countup";
 
 const StatCard = ({ number, suffix = "+", label }) => {
   // Theme colors
-  const bg = useColorModeValue("white", "sgg.700");
-  const labelColor = useColorModeValue("gray.600", "sgg.100");
+  const bg = useColorModeValue("white", "dark.surface");
+  const labelColor = useColorModeValue("gray.600", "dark.text");
 
   // Gradient text effect for the number
   const gradientText = useColorModeValue(
     "linear(to-r, sgg.900, sgg.500)",
-    "linear(to-r, white, sgg.500)"
+    "linear(to-r, dark.text, sgg.500)"
   );
 
   return (

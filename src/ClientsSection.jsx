@@ -27,8 +27,8 @@ const marqueeLogos = [...clients, ...clients];
 
 const ClientsSection = () => {
   // 🟢 All hooks defined at the top level of the component
-  const bgColor = useColorModeValue("sgg.100", "sgg.900");
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
+  const bgColor = useColorModeValue("sgg.100", "dark.canvas");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
 
   return (
     <Box

@@ -23,7 +23,7 @@ const HeroSection = () => {
 
   // 💡 Modal Logic
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const modalBg = useColorModeValue("sgg.100", "sgg.900");
+  const modalBg = useColorModeValue("sgg.100", "dark.elevated");
 
   // 💡 Scroll Logic for Case Studies
   const handleScrollToCaseStudies = (e) => {
@@ -117,7 +117,7 @@ const HeroSection = () => {
               <Text
                 mb={4}
                 fontSize="sm"
-                color={useColorModeValue("gray.600", "gray.400")}
+                color={useColorModeValue("gray.600", "dark.muted")}
               >
                 Fill out the details below, and our team will reach out to
                 discuss your project requirements via Email or WhatsApp.

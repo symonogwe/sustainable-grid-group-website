@@ -32,8 +32,8 @@ const ContactForm = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const inputBg = useColorModeValue("white", "sgg.700");
-  const inputBorder = useColorModeValue("gray.300", "sgg.700");
+  const inputBg = useColorModeValue("white", "dark.surface");
+  const inputBorder = useColorModeValue("gray.300", "dark.border");
   const whatsappHoverBg = useColorModeValue("green.600", "green.500");
 
   const handleChange = (e) => {

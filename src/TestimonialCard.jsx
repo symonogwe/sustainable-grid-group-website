@@ -17,11 +17,11 @@ const TestimonialCard = ({
   company,
   delay,
 }) => {
-  const bg = useColorModeValue("white", "sgg.700");
-  const quoteColor = useColorModeValue("gray.700", "sgg.100");
+  const bg = useColorModeValue("white", "dark.surface");
+  const quoteColor = useColorModeValue("gray.700", "dark.text");
   const clientColor = useColorModeValue("sgg.900", "sgg.500");
   const companyColor = useColorModeValue("sgg.700", "sgg.500");
-  const titleColor = useColorModeValue("gray.500", "gray.400");
+  const titleColor = useColorModeValue("gray.500", "dark.muted");
 
   return (
     <AnimateOnScroll delay={delay}>
@@ -71,7 +71,7 @@ const TestimonialCard = ({
           mt={4}
           pt={2}
           borderTop="1px solid"
-          borderColor={useColorModeValue("gray.100", "sgg.900")}
+          borderColor={useColorModeValue("gray.100", "dark.border")}
         >
           <Text fontWeight="bold" color={clientColor} fontSize="md">
             {clientName}
