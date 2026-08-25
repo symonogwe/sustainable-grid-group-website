@@ -3,7 +3,7 @@
 import {
   Box,
   Container,
-  Flex,
+  Grid,
   Heading,
   Text,
   VStack,
@@ -115,46 +115,6 @@ const InfoCard = ({ icon, title, body, delay }) => {
   );
 };
 
-// --- Sub-component: SUSTAIN core value card ---
-const CoreValueCard = ({ letter, name, description, delay }) => {
-  const bg = useColorModeValue("white", "dark.surface");
-  const nameColor = useColorModeValue("sgg.900", "dark.text");
-  const descriptionColor = useColorModeValue("gray.600", "dark.text");
-
-  return (
-    <AnimateOnScroll delay={delay}>
-      <Box
-        p={{ base: 6, lg: 4 }}
-        bg={bg}
-        borderRadius="xl"
-        shadow="lg"
-        h="full"
-        display="flex"
-        flexDirection="column"
-        textAlign="center"
-        transition="all 0.3s ease"
-        _hover={{ transform: "translateY(-4px)", shadow: "xl" }}
-      >
-        <Text
-          fontSize={{ base: "5xl", md: "6xl", lg: "5xl" }}
-          fontWeight="extrabold"
-          color="sgg.500"
-          lineHeight={1}
-          mb={2}
-        >
-          {letter}
-        </Text>
-        <Heading as="h4" size="sm" fontWeight="bold" mb={2} color={nameColor}>
-          {name}
-        </Heading>
-        <Text fontSize="sm" color={descriptionColor}>
-          {description}
-        </Text>
-      </Box>
-    </AnimateOnScroll>
-  );
-};
-
 const AboutSection = () => {
   // 🟢 All hooks defined at the top level of the component
   const sectionBg = useColorModeValue("white", "dark.canvas");
@@ -164,6 +124,21 @@ const AboutSection = () => {
     "linear(to-br, sgg.100, white)",
     "linear(to-br, dark.surface, dark.elevated)"
   );
+
+  // SUSTAIN core-values grid — flat cards, letter as the hero, restrained hover
+  const cardBg = useColorModeValue("white", "dark.surface");
+  const cardBorder = useColorModeValue("blackAlpha.50", "dark.border");
+  const cardBorderHover = useColorModeValue("blackAlpha.100", "dark.border");
+  const cardShadowHover = useColorModeValue(
+    "0 8px 24px rgba(0, 77, 64, 0.06)",
+    "0 8px 24px rgba(0, 0, 0, 0.25)"
+  );
+  const letterGradient = useColorModeValue(
+    "linear(to-br, sgg.500, sgg.900)",
+    "linear(to-br, sgg.500, dark.text)"
+  );
+  const cardNameColor = useColorModeValue("sgg.900", "dark.text");
+  const cardDescColor = useColorModeValue("gray.600", "dark.muted");
 
   return (
     <Box id="about" bg={sectionBg} py={{ base: 16, md: 24 }} px={{ base: 4, md: 8 }}>
@@ -260,48 +235,103 @@ const AboutSection = () => {
           ))}
         </SimpleGrid>
 
-        {/* E. Core Values — SUSTAIN */}
-        <AnimateOnScroll delay={0.1}>
-          <Box textAlign="center" mb={10}>
-            <Heading
-              as="h3"
-              size="lg"
-              fontWeight="extrabold"
-              mb={2}
-              color={headingColor}
-            >
-              Our Core Values
-            </Heading>
-            <Text fontSize="md" color={bodyTextColor} maxW="2xl" mx="auto">
-              Built around SUSTAIN — the principles that guide every
-              engagement.
-            </Text>
-          </Box>
-        </AnimateOnScroll>
+        {/* E. Core Values — SUSTAIN — flat, restrained cards where the
+            gradient-filled letter is the sole visual identity (no badge,
+            no watermark). Cards sit flush by default; hover only nudges
+            up 2px with a faint shadow — informational, not clickable.
+            CSS Grid (not Flex) so lg+ guarantees a true 7-column row —
+            no silent 6+1 reflow. Own 7xl Container so the grid can
+            breathe wider than the 6xl prose column above it. */}
+        <Box py={{ base: 16, md: 24, lg: 28 }}>
+          <Container maxW="7xl">
+            <AnimateOnScroll delay={0.1}>
+              <Box textAlign="center" mb={10}>
+                <Heading
+                  as="h3"
+                  size="lg"
+                  fontWeight="extrabold"
+                  mb={2}
+                  color={headingColor}
+                >
+                  Our Core Values
+                </Heading>
+                <Text fontSize="md" color={bodyTextColor} maxW="2xl" mx="auto">
+                  Built around SUSTAIN — the principles that guide every
+                  engagement.
+                </Text>
+              </Box>
+            </AnimateOnScroll>
 
-        {/* Flex + wrap so the 7 cards collapse into a single centered
-            SUSTAIN band at lg, instead of leaving an orphaned trailing
-            row the way a fixed-column SimpleGrid would at 7 items. */}
-        <Flex wrap="wrap" justify="center" gap={{ base: 6, md: 4, lg: 3 }} mb={14}>
-          {coreValuesData.map((value, index) => (
-            <Box
-              key={value.name}
-              flex={{
-                base: "1 1 100%",
-                sm: "1 1 calc(50% - 12px)",
-                md: "1 1 calc(25% - 12px)",
-                lg: "0 1 calc((100% / 7) - 12px)",
+            <Grid
+              templateColumns={{
+                base: "1fr",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(4, 1fr)",
+                lg: "repeat(7, 1fr)",
               }}
+              gap={{ base: 4, md: 5, lg: 4 }}
+              mt={{ base: 10, md: 14 }}
             >
-              <CoreValueCard
-                letter={value.letter}
-                name={value.name}
-                description={value.description}
-                delay={0.1 + index * 0.05}
-              />
-            </Box>
-          ))}
-        </Flex>
+              {coreValuesData.map((value, index) => (
+                <AnimateOnScroll key={value.name} delay={0.1 + index * 0.05} h="full">
+                  <Box
+                    borderRadius="2xl"
+                    p={{ base: 6, lg: 5 }}
+                    minH={{ base: "auto", lg: "260px" }}
+                    h="full"
+                    bg={cardBg}
+                    border="1px solid"
+                    borderColor={cardBorder}
+                    boxShadow="none"
+                    transition="all 0.35s cubic-bezier(0.4, 0, 0.2, 1)"
+                    cursor="default"
+                    _hover={{
+                      transform: "translateY(-2px)",
+                      borderColor: cardBorderHover,
+                      boxShadow: cardShadowHover,
+                    }}
+                  >
+                    {/* A. Hero letter — the card's sole visual identity */}
+                    <Text
+                      fontSize={{ base: "7xl", md: "8xl", lg: "7xl" }}
+                      fontWeight={800}
+                      fontFamily="heading"
+                      lineHeight={0.9}
+                      letterSpacing="-0.04em"
+                      mb={4}
+                      bgGradient={letterGradient}
+                      bgClip="text"
+                      color="transparent"
+                      sx={{
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      {value.letter}
+                    </Text>
+
+                    {/* B. Value name */}
+                    <Text
+                      fontSize="sm"
+                      fontWeight={700}
+                      textTransform="uppercase"
+                      letterSpacing="0.08em"
+                      color={cardNameColor}
+                      mb={3}
+                    >
+                      {value.name}
+                    </Text>
+
+                    {/* C. Description — unchanged content */}
+                    <Text fontSize="sm" color={cardDescColor} lineHeight={1.6}>
+                      {value.description}
+                    </Text>
+                  </Box>
+                </AnimateOnScroll>
+              ))}
+            </Grid>
+          </Container>
+        </Box>
 
         {/* F. Why Sustainable Grid Group */}
         <AnimateOnScroll delay={0.1}>
