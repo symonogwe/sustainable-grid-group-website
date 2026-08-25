@@ -178,10 +178,10 @@ const ServicesSection = () => {
   const [selectedService, setSelectedService] = useState(null);
 
   // 🟢 All hooks defined at the top level of the component
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
-  const subHeaderColor = useColorModeValue("gray.600", "sgg.100");
-  const modalBg = useColorModeValue("white", "sgg.700");
-  const modalBodyTextColor = useColorModeValue("gray.700", "gray.200");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
+  const subHeaderColor = useColorModeValue("gray.600", "dark.text");
+  const modalBg = useColorModeValue("white", "dark.elevated");
+  const modalBodyTextColor = useColorModeValue("gray.700", "dark.text");
 
   const handleReadMore = (service) => {
     setSelectedService(service);

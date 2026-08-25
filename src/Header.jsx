@@ -45,7 +45,7 @@ const Logo = () => {
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("navbar.light", "navbar.dark");
-  const color = useColorModeValue("sgg.900", "sgg.100");
+  const color = useColorModeValue("sgg.900", "dark.text");
 
   const navItems = [
     { name: "About", id: "about" },

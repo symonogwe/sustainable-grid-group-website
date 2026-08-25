@@ -17,9 +17,9 @@ import { FiArrowRight } from "react-icons/fi";
 
 const MobileMenu = ({ isOpen, onClose, navItems, handleScrollToSection }) => {
   // Define Hooks at the Top Level!
-  const linkColor = useColorModeValue("sgg.900", "sgg.100");
-  const bg = useColorModeValue("sgg.100", "sgg.900");
-  const hoverBg = useColorModeValue("gray.50", "sgg.700");
+  const linkColor = useColorModeValue("sgg.900", "dark.text");
+  const bg = useColorModeValue("sgg.100", "dark.elevated");
+  const hoverBg = useColorModeValue("gray.50", "dark.surface");
 
   // Combined click handler for navigation links
   const handleNavLinkClick = (e, id) => {

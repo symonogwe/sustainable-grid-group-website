@@ -19,7 +19,15 @@ const colors = {
   },
   navbar: {
     light: "rgba(247, 250, 252, 0.92)",
-    dark: "rgba(0, 77, 64, 0.9)",
+    dark: "rgba(10, 31, 27, 0.9)",
+  },
+  dark: {
+    canvas: "#0A1F1B", // Body / section bg
+    surface: "#12332C", // Card bg (one step above canvas)
+    elevated: "#1B443C", // Modal / most-elevated bg (two steps above)
+    border: "#2A5148", // Subtle borders/dividers
+    muted: "#8FA8A2", // Secondary text
+    text: "#EBF2F0", // Primary text (softer than pure white)
   },
 };
 
@@ -37,8 +45,8 @@ const theme = extendTheme({
   styles: {
     global: (props) => ({
       body: {
-        bg: props.colorMode === "dark" ? "sgg.900" : "sgg.100",
-        color: props.colorMode === "dark" ? "sgg.100" : "sgg.900",
+        bg: props.colorMode === "dark" ? "dark.canvas" : "sgg.100",
+        color: props.colorMode === "dark" ? "dark.text" : "sgg.900",
       },
       a: {
         color: props.colorMode === "dark" ? "sgg.500" : "sgg.900",
@@ -69,8 +77,8 @@ const theme = extendTheme({
         }),
         // Added 'outline' variant just in case you use it for the secondary button
         outline: (props) => ({
-          borderColor: props.colorMode === "dark" ? "sgg.100" : "sgg.900",
-          color: props.colorMode === "dark" ? "sgg.100" : "sgg.900",
+          borderColor: props.colorMode === "dark" ? "dark.text" : "sgg.900",
+          color: props.colorMode === "dark" ? "dark.text" : "sgg.900",
           _hover: {
             bg: "sgg.700",
             color: "white",

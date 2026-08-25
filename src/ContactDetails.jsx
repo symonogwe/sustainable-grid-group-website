@@ -8,7 +8,7 @@ const MAP_EMBED_URL =
 
 const ContactDetails = () => {
   // 🟢 FIX: mapBorderColor is now used below
-  const mapBorderColor = useColorModeValue("gray.300", "sgg.700");
+  const mapBorderColor = useColorModeValue("gray.300", "dark.border");
   const iconColor = useColorModeValue("sgg.900", "sgg.500");
 
   return (

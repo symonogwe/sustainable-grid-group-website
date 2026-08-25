@@ -55,7 +55,7 @@ const industriesData = [
 ];
 
 const IndustriesSection = () => {
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
 
   return (
     <Box id="industries" py={{ base: 8, md: 16 }} px={{ base: 4, md: 8 }}>
@@ -78,7 +78,7 @@ const IndustriesSection = () => {
           mx="auto"
           mb={12}
           fontSize="lg"
-          color={useColorModeValue("gray.600", "sgg.100")}
+          color={useColorModeValue("gray.600", "dark.text")}
         >
           Our expertise spans across diverse sectors, delivering tailored ESG
           solutions.

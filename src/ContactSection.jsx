@@ -13,8 +13,8 @@ import ContactDetails from "./ContactDetails";
 import AnimateOnScroll from "./MotionBox";
 
 const ContactSection = () => {
-  const headingColor = useColorModeValue("sgg.900", "sgg.100");
-  const bgColor = useColorModeValue("sgg.100", "sgg.900");
+  const headingColor = useColorModeValue("sgg.900", "dark.text");
+  const bgColor = useColorModeValue("sgg.100", "dark.canvas");
 
   return (
     <Box
@@ -43,7 +43,7 @@ const ContactSection = () => {
             mx="auto"
             mb={12}
             fontSize="lg"
-            color={useColorModeValue("gray.600", "sgg.100")}
+            color={useColorModeValue("gray.600", "dark.text")}
           >
             Let's discuss how we can help you achieve your sustainability goals.
           </Text>
